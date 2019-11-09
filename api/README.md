@@ -1,3 +1,14 @@
+# Notes - things not done but should be
+- fix all npm security issues
+- update/upgrade all packages
+- convert tslint to eslint
+- use npm workspace for shared dependencies
+
+
+
+
+
+
 # Node - Koa - Typescript Project
 
 
@@ -26,15 +37,16 @@ HEADER (LOCALHOST BASED ON DEFAULT SECRET KEY 'your-secret-whatever')
 Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEiLCJuYW1lIjoiSmF2aWVyIEF2aWxlcyIsImVtYWlsIjoiYXZpbGVzbG9wZXouamF2aWVyQGdtYWlsLmNvbSJ9.rgOobROftUYSWphkdNfxoN2cgKiqNXd4Km4oz6Ex4ng
 ```
 
-| method             | resource         | description                                                                                    |
-|:-------------------|:-----------------|:-----------------------------------------------------------------------------------------------|
-| `GET`              | `/`              | Simple hello world response                                                                    |
-| `GET`              | `/users`         | returns the collection of users present in the DB                                              |
-| `GET`              | `/users/:id`     | returns the specified id user                                                                  |
-| `POST`             | `/users`         | creates a user in the DB (object user to be includued in request's body)                       |
-| `PUT`              | `/users/:id`     | updates an already created user in the DB (object user to be includued in request's body)      |
-| `DELETE`           | `/users/:id`     | deletes a user from the DB (JWT token user ID must be the same as the user you want to delete) |
+| method   | resource     | description                                                                                    |
+| :------- | :----------- | :--------------------------------------------------------------------------------------------- |
+| `GET`    | `/`          | Simple hello world response                                                                    |
+| `GET`    | `/users`     | returns the collection of users present in the DB                                              |
+| `GET`    | `/users/:id` | returns the specified id user                                                                  |
+| `POST`   | `/users`     | creates a user in the DB (object user to be includued in request's body)                       |
+| `PUT`    | `/users/:id` | updates an already created user in the DB (object user to be includued in request's body)      |
+| `DELETE` | `/users/:id` | deletes a user from the DB (JWT token user ID must be the same as the user you want to delete) |
 
+- [Notes - things not done but should be](#notes---things-not-done-but-should-be)
 - [Node - Koa - Typescript Project](#node---koa---typescript-project)
   - [Pre-reqs](#pre-reqs)
   - [Features:](#features)
@@ -216,22 +228,22 @@ The full folder structure of this app is explained below:
 
 > **Note!** Make sure you have already built the app using `npm run build`
 
-| Name | Description |
-| ------------------------ | --------------------------------------------------------------------------------------------- |
-| **dist**                 | Contains the distributable (or output) from your TypeScript build. This is the code you ship  |
-| **node_modules**         | Contains all your npm dependencies                                                            |
-| **src**                  | Contains your source code that will be compiled to the dist dir                               |
-| **src**/server.ts        | Entry point to your KOA app                                                                   |
-| **.github**/**workflows**/test.yml | Github actions CI configuration                                                     |
-| **loadtests**/locustfile.py | Locust load tests                                                                          |
-| **integrationtests**/node-koa-typescript.postman_collection.json | Postman integration test collection                   |
-| .copyStaticAssets.ts     | Build script that copies images, fonts, and JS libs to the dist folder                        |
-| package.json             | File that contains npm dependencies as well as [build scripts](#what-if-a-library-isnt-on-definitelytyped) |
-| docker-compose.yml       | Docker PostgreSQL and Adminer images in case you want to load the db from Docker              |
-| tsconfig.json            | Config settings for compiling server code written in TypeScript                               |
-| tslint.json              | Config settings for TSLint code style checking                                                |
-| .example.env             | Env variables file example to be renamed to .env                                              |
-| Dockerfile and dockerignore | The app is dockerized to be deployed from CI in a more standard way, not needed for dev    |
+| Name                                                             | Description                                                                                                |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| **dist**                                                         | Contains the distributable (or output) from your TypeScript build. This is the code you ship               |
+| **node_modules**                                                 | Contains all your npm dependencies                                                                         |
+| **src**                                                          | Contains your source code that will be compiled to the dist dir                                            |
+| **src**/server.ts                                                | Entry point to your KOA app                                                                                |
+| **.github**/**workflows**/test.yml                               | Github actions CI configuration                                                                            |
+| **loadtests**/locustfile.py                                      | Locust load tests                                                                                          |
+| **integrationtests**/node-koa-typescript.postman_collection.json | Postman integration test collection                                                                        |
+| .copyStaticAssets.ts                                             | Build script that copies images, fonts, and JS libs to the dist folder                                     |
+| package.json                                                     | File that contains npm dependencies as well as [build scripts](#what-if-a-library-isnt-on-definitelytyped) |
+| docker-compose.yml                                               | Docker PostgreSQL and Adminer images in case you want to load the db from Docker                           |
+| tsconfig.json                                                    | Config settings for compiling server code written in TypeScript                                            |
+| tslint.json                                                      | Config settings for TSLint code style checking                                                             |
+| .example.env                                                     | Env variables file example to be renamed to .env                                                           |
+| Dockerfile and dockerignore                                      | The app is dockerized to be deployed from CI in a more standard way, not needed for dev                    |
 
 ## Configuring TypeScript compilation
 TypeScript uses the file `tsconfig.json` to adjust project compile options.
@@ -252,17 +264,17 @@ Let's dissect this project's `tsconfig.json`, starting with the `compilerOptions
     },
 ```
 
-| `compilerOptions` | Description |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `"module": "commonjs"`             | The **output** module type (in your `.js` files). Node uses commonjs, so that is what we use            |
-| `"target": "es2017"`               | The output language level. Node supports ES2017, so we can target that here                               |
-| `"lib": ["es6"]`                   | Needed for TypeORM.                                             |
-| `"moduleResolution": "node"`       | TypeScript attempts to mimic Node's module resolution strategy. Read more [here](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node)                             |
-| `"sourceMap": true`                | We want source maps to be output along side our JavaScript.     |
-| `"outDir": "dist"`                 | Location to output `.js` files after compilation                |
-| `"baseUrl": "."`                   | Part of configuring module resolution.                          |
-| `"experimentalDecorators": true`   | Needed for TypeORM. Allows use of @Decorators                   |
-| `"emitDecoratorMetadata": true`    | Needed for TypeORM. Allows use of @Decorators                   |
+| `compilerOptions`                | Description                                                                                                                                                |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `"module": "commonjs"`           | The **output** module type (in your `.js` files). Node uses commonjs, so that is what we use                                                               |
+| `"target": "es2017"`             | The output language level. Node supports ES2017, so we can target that here                                                                                |
+| `"lib": ["es6"]`                 | Needed for TypeORM.                                                                                                                                        |
+| `"moduleResolution": "node"`     | TypeScript attempts to mimic Node's module resolution strategy. Read more [here](https://www.typescriptlang.org/docs/handbook/module-resolution.html#node) |
+| `"sourceMap": true`              | We want source maps to be output along side our JavaScript.                                                                                                |
+| `"outDir": "dist"`               | Location to output `.js` files after compilation                                                                                                           |
+| `"baseUrl": "."`                 | Part of configuring module resolution.                                                                                                                     |
+| `"experimentalDecorators": true` | Needed for TypeORM. Allows use of @Decorators                                                                                                              |
+| `"emitDecoratorMetadata": true`  | Needed for TypeORM. Allows use of @Decorators                                                                                                              |
 
 
 
@@ -290,17 +302,17 @@ You'll notice that npm scripts can call each other which makes it easy to compos
 Below is a list of all the scripts this template has available:
 
 
-| Npm Script | Description |
-| ------------------------- | ------------------------------------------------------------------------------------------------- |
-| `start`                   | Does the same as 'npm run serve'. Can be invoked with `npm start`                                 |
-| `build`                   | Full build. Runs ALL build tasks (`build-ts`, `tslint`, `copy-static-assets`)                     |
-| `serve`                   | Runs node on `dist/server/server.js` which is the apps entry point                                |
-| `watch-server`            | Nodemon, process restarts if crashes. Continuously watches `.ts` files and re-compiles to `.js`   |
-| `build-ts`                | Compiles all source `.ts` files to `.js` files in the `dist` folder                               |
-| `tslint`                  | Runs TSLint on project files                                                                      |
-| `copy-static-assets`      | Calls script that copies JS libs, fonts, and images to dist directory                             |
-| `test:integration`        | Execute Postman integration tests collection using newman                                         |
-| `test:load`               | Execute Locust load tests using a specific configuration                                          |
+| Npm Script           | Description                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------- |
+| `start`              | Does the same as 'npm run serve'. Can be invoked with `npm start`                               |
+| `build`              | Full build. Runs ALL build tasks (`build-ts`, `tslint`, `copy-static-assets`)                   |
+| `serve`              | Runs node on `dist/server/server.js` which is the apps entry point                              |
+| `watch-server`       | Nodemon, process restarts if crashes. Continuously watches `.ts` files and re-compiles to `.js` |
+| `build-ts`           | Compiles all source `.ts` files to `.js` files in the `dist` folder                             |
+| `tslint`             | Runs TSLint on project files                                                                    |
+| `copy-static-assets` | Calls script that copies JS libs, fonts, and images to dist directory                           |
+| `test:integration`   | Execute Postman integration tests collection using newman                                       |
+| `test:load`          | Execute Locust load tests using a specific configuration                                        |
 
 # CI: Github Actions
 Using Github Actions a pipeline is deploying the application in Heroku and running tests against it, checking the application is healthy deployed. The pipeline can be found at `/.github/workflows/test.yml`. This performs the following:
@@ -441,34 +453,34 @@ Dependencies are managed through `package.json`.
 In that file you'll find two sections:
 ## dependencies
 
-| Package                         | Description                                                           |
-| ------------------------------- | --------------------------------------------------------------------- |
-| dotenv                          | Loads environment variables from .env file.                           |
-| koa                             | Node web framework.                                                   |
-| koa-bodyparser                  | A bodyparser for koa.                                                 |
-| koa-jwt                         | Middleware to validate JWT tokens.                                    |
-| koa-router                      | Router middleware for koa.                                            |
-| koa-helmet                      | Wrapper for helmet, important security headers to make app more secure| 
-| @koa/cors                       | Cross-Origin Resource Sharing(CORS) for koa                           |
-| pg                              | PostgreSQL driver, needed for the ORM.                                |
-| reflect-metadata                | Used by typeORM to implement decorators.                              |
-| typeorm                         | A very cool SQL ORM.                                                  |
-| winston                         | Logging library.                                                      |
-| class-validator                 | Decorator based entities validation.                                  |
-| pg-connection-string            | Parser for database connection string.                                |
-| koa-swagger-decorator           | using decorator to automatically generate swagger doc for koa-router. |
-| cron                            | Register cron jobs in node.                                           |
+| Package               | Description                                                            |
+| --------------------- | ---------------------------------------------------------------------- |
+| dotenv                | Loads environment variables from .env file.                            |
+| koa                   | Node web framework.                                                    |
+| koa-bodyparser        | A bodyparser for koa.                                                  |
+| koa-jwt               | Middleware to validate JWT tokens.                                     |
+| koa-router            | Router middleware for koa.                                             |
+| koa-helmet            | Wrapper for helmet, important security headers to make app more secure |
+| @koa/cors             | Cross-Origin Resource Sharing(CORS) for koa                            |
+| pg                    | PostgreSQL driver, needed for the ORM.                                 |
+| reflect-metadata      | Used by typeORM to implement decorators.                               |
+| typeorm               | A very cool SQL ORM.                                                   |
+| winston               | Logging library.                                                       |
+| class-validator       | Decorator based entities validation.                                   |
+| pg-connection-string  | Parser for database connection string.                                 |
+| koa-swagger-decorator | using decorator to automatically generate swagger doc for koa-router.  |
+| cron                  | Register cron jobs in node.                                            |
 
 ## devDependencies
 
-| Package                         | Description                                                           |
-| ------------------------------- | --------------------------------------------------------------------- |
-| @types                          | Dependencies in this folder are `.d.ts` files used to provide types   |
-| nodemon                         | Utility that automatically restarts node process when it crashes      |
-| ts-node                         | Enables directly running TS files. Used to run `copy-static-assets.ts`|
-| tslint                          | Linter (similar to ESLint) for TypeScript files                       |
-| typescript                      | JavaScript compiler/type checker that boosts JavaScript productivity  |
-| shelljs                         | Portable Unix shell commands for Node.js                              |
+| Package    | Description                                                            |
+| ---------- | ---------------------------------------------------------------------- |
+| @types     | Dependencies in this folder are `.d.ts` files used to provide types    |
+| nodemon    | Utility that automatically restarts node process when it crashes       |
+| ts-node    | Enables directly running TS files. Used to run `copy-static-assets.ts` |
+| tslint     | Linter (similar to ESLint) for TypeScript files                        |
+| typescript | JavaScript compiler/type checker that boosts JavaScript productivity   |
+| shelljs    | Portable Unix shell commands for Node.js                               |
 
 To install or update these dependencies you can use `npm install` or `npm update`.
 
