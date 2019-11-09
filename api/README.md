@@ -3,6 +3,7 @@
 - update/upgrade all packages
 - convert tslint to eslint
 - use npm workspace for shared dependencies
+- config variables should have better camelCase naming
 
 
 
