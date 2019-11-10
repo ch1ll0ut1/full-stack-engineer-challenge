@@ -1,21 +1,21 @@
 {
 	"info": {
-		"_postman_id": "70355a34-dfef-40c9-a968-52213ef97f2e",
-		"name": "node-koa-typescript",
+		"_postman_id": "e2a0d110-081f-4ca8-9944-68cfcaf778f2",
+		"name": "guardrails-code-challenge-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Create a user",
+			"name": "Create a result",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"id": "317968ef-610a-4f58-86f1-aebda47cb4f3",
 						"exec": [
-							"pm.test(\"Create user id variable\", function () {",
+							"pm.test(\"Create result id variable\", function () {",
 							"    var jsonData = pm.response.json();",
-							"    pm.environment.set(\"userId\", jsonData.id);",
+							"    pm.environment.set(\"resultId\", jsonData.id);",
 							"});",
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
@@ -45,7 +45,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Integration Test User\",\r\n\t\"email\": \"user@citest.com\"\r\n}",
+					"raw": "{\n    \"repositoryName\": \"adfs\",\n    \"findings\": [\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G402\",\n            \"location\": {\n                \"path\": \"connectors/apigateway.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 60\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"TLS InsecureSkipVerify set true.\",\n                \"severity\": \"HIGH\"\n            }\n        },\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G404\",\n            \"location\": {\n                \"path\": \"util/util.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 32\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"Use of weak random number generator (math/rand instead of crypto/rand)\",\n                \"severity\": \"HIGH\"\n            }\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -53,19 +53,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/users",
+					"raw": "{{url}}/results",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users"
+						"results"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Create a user with wrong email",
+			"name": "Create a result with missing repositoryName",
 			"event": [
 				{
 					"listen": "test",
@@ -76,67 +76,8 @@
 							"    pm.response.to.have.status(400);",
 							"});",
 							"",
-							"pm.test(\"Email is not valid\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"email must be an email\");",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "{{jwtToken}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Integration Test User\",\r\n\t\"email\": \"user@citest\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/users",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create a user with missing name",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "317968ef-610a-4f58-86f1-aebda47cb4f3",
-						"exec": [
-							"pm.test(\"Status code is 400\", function () {",
-							"    pm.response.to.have.status(400);",
-							"});",
-							"",
-							"pm.test(\"Name is missing\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"name must be longer than or equal to 10 characters\");",
+							"pm.test(\"repositoryName is missing\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"repositoryName should not be empty\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -163,7 +104,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"email\": \"user@citest.com\"\r\n}",
+					"raw": "{\n    \"findings\": [\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G402\",\n            \"location\": {\n                \"path\": \"connectors/apigateway.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 60\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"TLS InsecureSkipVerify set true.\",\n                \"severity\": \"HIGH\"\n            }\n        },\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G404\",\n            \"location\": {\n                \"path\": \"util/util.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 32\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"Use of weak random number generator (math/rand instead of crypto/rand)\",\n                \"severity\": \"HIGH\"\n            }\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -171,19 +112,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/users",
+					"raw": "{{url}}/results",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users"
+						"results"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update a user",
+			"name": "Update a result",
 			"event": [
 				{
 					"listen": "test",
@@ -218,7 +159,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Integration Test User Modified\",\r\n\t\"email\": \"user@citest.com\"\r\n}",
+					"raw": "{\n    \"repositoryName\": \"1231213\",\n    \"findings\": [\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G402\",\n            \"location\": {\n                \"path\": \"connectors/apigateway.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 60\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"TLS InsecureSkipVerify set true.\",\n                \"severity\": \"HIGH\"\n            }\n        },\n        {\n            \"type\": \"sast\",\n            \"ruleId\": \"G404\",\n            \"location\": {\n                \"path\": \"util/util.go\",\n                \"positions\": {\n                    \"begin\": {\n                        \"line\": 32\n                    }\n                }\n            },\n            \"metadata\": {\n                \"description\": \"Use of weak random number generator (math/rand instead of crypto/rand)\",\n                \"severity\": \"HIGH\"\n            }\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -226,20 +167,20 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/users/{{userId}}",
+					"raw": "{{url}}/results/{{resultId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users",
-						"{{userId}}"
+						"results",
+						"{{resultId}}"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update a user with missing email",
+			"name": "Update a result with missing repositoryName",
 			"event": [
 				{
 					"listen": "test",
@@ -286,12 +227,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/users/{{userId}}",
+					"raw": "{{url}}/results/{{userId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users",
+						"results",
 						"{{userId}}"
 					]
 				}
@@ -299,7 +240,7 @@
 			"response": []
 		},
 		{
-			"name": "Update a nonexistent user",
+			"name": "Update a nonexistent result",
 			"event": [
 				{
 					"listen": "test",
@@ -345,12 +286,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{url}}/users/fakeId",
+					"raw": "{{url}}/results/fakeId",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users",
+						"results",
 						"fakeId"
 					]
 				}
@@ -358,7 +299,7 @@
 			"response": []
 		},
 		{
-			"name": "Get user",
+			"name": "Get result",
 			"event": [
 				{
 					"listen": "test",
@@ -388,12 +329,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/users/{{userId}}",
+					"raw": "{{url}}/results/{{userId}}",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users",
+						"results",
 						"{{userId}}"
 					]
 				}
@@ -401,7 +342,7 @@
 			"response": []
 		},
 		{
-			"name": "Get nonexistent user",
+			"name": "Get nonexistent result",
 			"event": [
 				{
 					"listen": "test",
@@ -430,12 +371,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/users/fakeId",
+					"raw": "{{url}}/results/fakeId",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users",
+						"results",
 						"fakeId"
 					]
 				}
@@ -443,7 +384,7 @@
 			"response": []
 		},
 		{
-			"name": "Get users",
+			"name": "Get result",
 			"event": [
 				{
 					"listen": "test",
@@ -468,12 +409,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{url}}/users",
+					"raw": "{{url}}/results",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"users"
+						"results"
 					]
 				}
 			},
