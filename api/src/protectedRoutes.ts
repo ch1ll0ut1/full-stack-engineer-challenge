@@ -1,21 +1,23 @@
 import { SwaggerRouter } from 'koa-swagger-decorator';
 import controller = require('./controller');
 
-const protectedRouter = new SwaggerRouter();
+const protectedRouter = new SwaggerRouter({
+    prefix: '/api/v1',
+});
 
-// USER ROUTES
-protectedRouter.get('/users', controller.user.getUsers);
-protectedRouter.get('/users/:id', controller.user.getUser);
-protectedRouter.post('/users', controller.user.createUser);
-protectedRouter.put('/users/:id', controller.user.updateUser);
-protectedRouter.delete('/users/:id', controller.user.deleteUser);
-protectedRouter.delete('/testusers', controller.user.deleteTestUsers);
+// Test Scan Results ROUTES
+protectedRouter.get('/results', controller.TestScanResult.getResults);
+protectedRouter.get('/results/:id', controller.TestScanResult.getResult);
+protectedRouter.post('/results', controller.TestScanResult.createResult);
+protectedRouter.put('/results/:id', controller.TestScanResult.updateResult);
+protectedRouter.delete('/results/:id', controller.TestScanResult.deleteResult);
+protectedRouter.delete('/testresults', controller.TestScanResult.deleteTestResults);
 
-// Swagger endpoint
+// Swagger endpoint  (/)
 protectedRouter.swagger({
-    title: 'node-typescript-koa-rest',
-    description: 'API REST using NodeJS and KOA framework, typescript. TypeORM for SQL with class-validators. Middlewares JWT, CORS, Winston Logger.',
-    version: '1.5.0'
+    title: 'API',
+    description: 'Rest Api to read and write scan results',
+    version: '1.5.0',
 });
 
 // mapDir will scan the input dir, and automatically call router.map to all Router Class
