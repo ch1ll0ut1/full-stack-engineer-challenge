@@ -1,4 +1,5 @@
 import { SwaggerRouter } from 'koa-swagger-decorator';
+
 import controller = require('./controller');
 
 const protectedRouter = new SwaggerRouter({
