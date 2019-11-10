@@ -1,2 +1,2 @@
-export { default as user } from './user';
-export { default as general } from './general';
+export { default as TestScanResult } from './TestScanResult';
+export { default as HealthCheck } from './HealthCheck';

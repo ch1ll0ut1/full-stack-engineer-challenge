@@ -3,7 +3,7 @@ import controller = require('./controller');
 
 const unprotectedRouter = new Router();
 
-// Hello World route
-unprotectedRouter.get('/', controller.general.helloWorld);
+// HealthCheck Controller
+unprotectedRouter.get('/', controller.HealthCheck.getStatus);
 
 export { unprotectedRouter };
