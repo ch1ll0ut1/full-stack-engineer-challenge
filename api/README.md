@@ -1,3 +1,6 @@
+# todo
+- move routes into sub directory with public/private names
+
 # Getting Started
 - Create .env
 ```
@@ -40,6 +43,7 @@ If you use Docker natively, the host for the server which you will need to inclu
 - use npm workspace for shared dependencies
 - config variables should have better camelCase naming
 - make router path defnition generic for crud operations
+- use absolute paths (requires build modification to transform paths and config in tsconfig for base path)
 
 # Structure
 
