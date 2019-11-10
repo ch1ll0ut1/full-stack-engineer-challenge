@@ -44,6 +44,9 @@ If you use Docker natively, the host for the server which you will need to inclu
 - config variables should have better camelCase naming
 - make router path defnition generic for crud operations
 - use absolute paths (requires build modification to transform paths and config in tsconfig for base path)
+- seperate db and webserver init into seperate files and have a startup script just calling a array of setup scripts (like db and api)
+- figure out how to read ormconfig of typeorm from .env
+- choice of database: I didnt use postgresql much (so the implementation for that might not be perfect). For the given requirement it seemed to be the right db (without much other requirements). I normaly used mysql, or in case of nested json i would use mongodb or for timeseries something like influxdb (which might be the one that should be used here if the data volume is big). 
 
 # Structure
 
@@ -94,8 +97,6 @@ createConnection({
     }
  })
 ```
-
-You can find an implemented **CRUD of the entity user** in the correspondent controller controller/user.ts and its routes in routes.ts file.
 
 ## Entities validation
 This project uses the library class-validator, a decorator-based entity validation, which is used directly in the entities files as follows:
