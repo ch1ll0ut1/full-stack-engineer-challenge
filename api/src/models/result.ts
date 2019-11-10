@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, VersionColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Length, IsDate, IsJSON, IsNotEmpty, IsOptional } from 'class-validator';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Length, IsDate, IsNotEmpty, IsOptional } from 'class-validator';
 
 export enum ResultStatus {
     QUEUED = "Queued",
@@ -22,32 +22,53 @@ export class Result {
     repositoryName: string;
 
     @Column({ type: 'jsonb' })
-    @IsJSON()
     @IsNotEmpty()
     findings: object;
 
     @CreateDateColumn()
     queuedAt: Date;
 
-    @Column()
+    @Column({ nullable: true })
     @IsDate()
     @IsOptional()
     scanningAt: Date;
 
-    @Column()
+    @Column({ nullable: true })
     @IsDate()
     @IsOptional()
     finishedAt: Date;
 
     @UpdateDateColumn()
     updatedAt: Date;
-
-    @VersionColumn()
-    entityVersion: number;
 }
+export default Result;
+
+// SCHEMA
+const findingsExample = [{
+    "type": "sast",
+    "ruleId": "G402",
+    "location": {
+        "path": "connectors/apigateway.go",
+        "positions": {
+            "begin": {
+                "line": 60
+            }
+        }
+    },
+    "metadata": {
+        "description": "TLS InsecureSkipVerify set true.",
+        "severity": "HIGH"
+    }
+}];
+const exampleDate = new Date();
 
 export const resultSchema = {
     id: { type: 'number', required: true, example: 1 },
-    name: { type: 'string', required: true, example: 'Javier' },
-    email: { type: 'string', required: true, example: 'avileslopez.javier@gmail.com' }
+    status: { type: 'string', required: false, example: 'Queued' },
+    repositoryName: { type: 'string', required: true, example: 'my repository' },
+    findings: { type: 'jsonb', required: true, example: findingsExample },
+    queuedAt: { type: 'date', required: false, example: exampleDate },
+    scanningAt: { type: 'date', required: false, example: exampleDate },
+    finishedAt: { type: 'date', required: false, example: exampleDate },
+    updatedAt: { type: 'date', required: false, example: exampleDate },
 };
