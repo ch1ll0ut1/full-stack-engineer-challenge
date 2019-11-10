@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "url": "postgres://user:pass@localhost:5432/apidb",
+  "migrations": [
+    "src/migrations/*.ts"
+  ],
+  "entities": [
+    "src/models/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/migrations/",
+    "entitiesDir": "src/models/"
+  }
+}
