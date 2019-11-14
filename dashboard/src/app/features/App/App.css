@@ -1,0 +1,14 @@
+.app-content {
+  padding: 0 50px;
+}
+
+.app-content-inner {
+  background-color: #ffffff;
+  padding: 24px;
+  min-height: 280px;
+  margin-top: 16px;
+}
+
+.app-footer {
+  text-align: center;
+}
