@@ -47,6 +47,8 @@ If you use Docker natively, the host for the server which you will need to inclu
 - seperate db and webserver init into seperate files and have a startup script just calling a array of setup scripts (like db and api)
 - figure out how to read ormconfig of typeorm from .env
 - choice of database: I didnt use postgresql much (so the implementation for that might not be perfect). For the given requirement it seemed to be the right db (without much other requirements). I normaly used mysql, or in case of nested json i would use mongodb or for timeseries something like influxdb (which might be the one that should be used here if the data volume is big). 
+- i would use yarn but as it is a boilerplate with npm and time is short i do not want to deal with version update problems caused by moving from npm to yarn
+- unit tests: right now the logic is fairly simple and covered by the integration tests, but normaly there should also be unit tests checking all the different edge cases of smaller units which are hard to test by integration tests (which are more for full end2end run through)
 
 # Structure
 
