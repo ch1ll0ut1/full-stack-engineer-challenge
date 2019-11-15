@@ -5,6 +5,7 @@ import { Layout } from 'antd';
 import './App.css';
 import { Routes } from '../../Routes';
 import Navigation from '../Navigation/Navigation';
+import { default as ScanResultListView } from '../ScanResult/ListView/ListView';
 
 const { Header, Content, Footer } = Layout;
 const Placeholder = () => <div>Nothing</div>;
@@ -18,7 +19,7 @@ const App: React.FC = () => {
         </Header>
         <Content className="app-content">
           <div className="app-content-inner">
-            <Route exact path={Routes.SCAN_RESULT_LIST} component={Placeholder} />
+            <Route exact path={Routes.SCAN_RESULT_LIST} component={ScanResultListView} />
             <Route path={Routes.SCAN_RESULT_CREATE} component={Placeholder} />
             <Route path={Routes.SCAN_RESULT_DETAILS} component={Placeholder} />
           </div>
