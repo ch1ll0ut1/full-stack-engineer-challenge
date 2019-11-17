@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailView renders error state 1`] = `
+<div>
+  <div>
+    Error, there was an network problem. Please try again later.
+  </div>
+</div>
+`;
+
+exports[`DetailView renders loaded state 1`] = `
+<div>
+  <h1
+    aria-label={null}
+    className="ant-typography"
+    style={
+      Object {
+        "WebkitLineClamp": null,
+      }
+    }
+  >
+    Findings of 
+    someName
+     (
+    Queued
+    )
+  </h1>
+  <ul
+    className="ant-tree"
+    role="tree"
+    unselectable="on"
+  />
+</div>
+`;
+
+exports[`DetailView renders loading state 1`] = `
+<div>
+  <div>
+    Loading...
+  </div>
+</div>
+`;
