@@ -1,17 +1,5 @@
 import React from 'react';
-import {
-  Form,
-  Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from 'antd';
+import { Form, Input, Button } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 
 import { ScanResultFormData } from '../models/ScanResultFormData';

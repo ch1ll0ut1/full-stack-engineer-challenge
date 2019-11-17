@@ -10,7 +10,6 @@ import { default as ScanResultDetailView } from '../ScanResult/DetailView/Detail
 import { default as ScanResultCreateView } from '../ScanResult/CreateView/CreateView';
 
 const { Header, Content, Footer } = Layout;
-const Placeholder = () => <div>Nothing</div>;
 
 const App: React.FC = () => {
   return (
