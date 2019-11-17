@@ -2,17 +2,41 @@ import React from 'react';
 
 import useScanResultsService from '../services/useScanResultsService';
 import { ScanResult } from '../models/ScanResult';
+import { Table } from 'antd';
+import { ColumnProps } from 'antd/lib/table';
+import { Link } from 'react-router-dom';
+import { Routes } from '../../../Routes';
 
-const renderResult: React.FC<ScanResult> = (result) => {
-  const { repositoryName, status, updatedAt } = result;
+const renderTable = (data: ScanResult[]) => {
+
+  const columns: ColumnProps<ScanResult>[] = [
+    {
+      title: 'Repository',
+      dataIndex: 'repositoryName',
+      key: 'repositoryName',
+    },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
+      title: 'Last Change',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt ',
+      render: (date: Date) => date.toLocaleString(),
+    },
+    {
+      title: 'View Findings',
+      dataIndex: 'id',
+      key: 'id ',
+      render: (id: string) => <Link to={Routes.SCAN_RESULT_DETAILS.replace(':id', id)}>Findings</Link>,
+    },
+  ];
 
   return (
-    <>
-      <div key={repositoryName}>{repositoryName}</div>
-      <div key={status}>{status}</div>
-      <div key={updatedAt.getTime()}>{updatedAt.toLocaleString()}</div>
-    </>
-  )
+    <Table columns={columns} dataSource={data} rowKey="id" />
+  );
 }
 
 const ListView: React.FC = () => {
@@ -21,7 +45,7 @@ const ListView: React.FC = () => {
   return (
     <div>
       {service.status === 'loading' && <div>Loading...</div>}
-      {service.status === 'loaded' && service.payload.map(renderResult)}
+      {service.status === 'loaded' && renderTable(service.payload)}
       {service.status === 'error' && (
         <div>Error, there was an network problem. Please try again later.</div>
       )}
