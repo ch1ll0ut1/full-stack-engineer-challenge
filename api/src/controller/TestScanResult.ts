@@ -40,13 +40,8 @@ export default class ResultController {
     public static async createResult(ctx: BaseContext) {
         const result = await TestScanResultService.create(ctx.request.body);
 
-        if (result instanceof Result) {
-            ctx.status = CREATED;
-            ctx.body = { result };
-        } else {
-            ctx.status = BAD_REQUEST;
-            ctx.body = { errors: result };
-        }
+        ctx.status = result instanceof Result ? CREATED : BAD_REQUEST;
+        ctx.body = result;
     }
 
     @request('put', '/results/{id}')
@@ -61,7 +56,7 @@ export default class ResultController {
             ctx.status = NO_CONTENT;
         } else {
             ctx.status = BAD_REQUEST;
-            ctx.body = { errors: result };
+            ctx.body = result;
         }
     }
 
@@ -78,7 +73,7 @@ export default class ResultController {
             ctx.status = OK;
         } else {
             ctx.status = BAD_REQUEST;
-            ctx.body = { errors: result };
+            ctx.body = result;
         }
     }
 
