@@ -10,7 +10,7 @@ export default class TestScanResultService {
   }
 
   public static async find() {
-    return this.getRepository().find();
+    return this.getRepository().find({ select: ['id', 'repositoryName', 'status', 'updatedAt'] });
   }
 
   public static async findOne(id?: number) {
