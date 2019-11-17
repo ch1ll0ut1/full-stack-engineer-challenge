@@ -41,3 +41,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 - improve performance for production by following "advanced guides": https://ant.design/docs/react/use-with-create-react-app
 - use css modules 
+- should add pagination to ListView
