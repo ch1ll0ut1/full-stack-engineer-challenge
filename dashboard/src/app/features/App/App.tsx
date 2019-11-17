@@ -7,6 +7,7 @@ import { Routes } from '../../Routes';
 import Navigation from '../Navigation/Navigation';
 import { default as ScanResultListView } from '../ScanResult/ListView/ListView';
 import { default as ScanResultDetailView } from '../ScanResult/DetailView/DetailView';
+import { default as ScanResultCreateView } from '../ScanResult/CreateView/CreateView';
 
 const { Header, Content, Footer } = Layout;
 const Placeholder = () => <div>Nothing</div>;
@@ -21,7 +22,7 @@ const App: React.FC = () => {
         <Content className="app-content">
           <div className="app-content-inner">
             <Route exact path={Routes.SCAN_RESULT_LIST} component={ScanResultListView} />
-            <Route path={Routes.SCAN_RESULT_CREATE} component={Placeholder} />
+            <Route path={Routes.SCAN_RESULT_CREATE} component={ScanResultCreateView} />
             <Route path={Routes.SCAN_RESULT_DETAILS} component={ScanResultDetailView} />
           </div>
         </Content>

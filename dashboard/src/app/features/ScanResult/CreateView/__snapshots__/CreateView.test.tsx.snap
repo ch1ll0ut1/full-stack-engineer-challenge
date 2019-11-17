@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateView renders error state 1`] = `
+<div>
+  <form
+    className="ant-form ant-form-horizontal"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-form-item-label ant-col-xs-12 ant-col-sm-4"
+        style={Object {}}
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="Create Scan Result_repositoryName"
+          onClick={[Function]}
+          title="Repository Name"
+        >
+          Repository Name
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper ant-col-xs-12 ant-col-sm-8"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
+              data-__field={
+                Object {
+                  "name": "repositoryName",
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "repositoryName",
+                  "originalProps": Object {
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "Please input the name!",
+                      "required": true,
+                      "whitespace": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "Please input the name!",
+                          "required": true,
+                          "whitespace": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              id="Create Scan Result_repositoryName"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-form-item-label ant-col-xs-12 ant-col-sm-4"
+        style={Object {}}
+      >
+        <label
+          className="ant-form-item-required"
+          htmlFor="Create Scan Result_findings"
+          onClick={[Function]}
+          title="Findings"
+        >
+          Findings
+        </label>
+      </div>
+      <div
+        className="ant-col ant-form-item-control-wrapper ant-col-xs-12 ant-col-sm-8"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <input
+              className="ant-input"
+              data-__field={
+                Object {
+                  "name": "findings",
+                }
+              }
+              data-__meta={
+                Object {
+                  "name": "findings",
+                  "originalProps": Object {
+                    "type": "text",
+                  },
+                  "ref": null,
+                  "rules": Array [
+                    Object {
+                      "message": "Please paste findings Data!",
+                      "required": true,
+                      "validator": [Function],
+                      "whitespace": true,
+                    },
+                  ],
+                  "trigger": "onChange",
+                  "validate": Array [
+                    Object {
+                      "rules": Array [
+                        Object {
+                          "message": "Please paste findings Data!",
+                          "required": true,
+                          "validator": [Function],
+                          "whitespace": true,
+                        },
+                      ],
+                      "trigger": Array [
+                        "onChange",
+                      ],
+                    },
+                  ],
+                  "valuePropName": "value",
+                }
+              }
+              id="Create Scan Result_findings"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              type="text"
+              value=""
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ant-row ant-form-item"
+      style={Object {}}
+    >
+      <div
+        className="ant-col ant-form-item-control-wrapper ant-col-xs-12 ant-col-sm-8"
+        style={Object {}}
+      >
+        <div
+          className="ant-form-item-control"
+        >
+          <span
+            className="ant-form-item-children"
+          >
+            <button
+              className="ant-btn ant-btn-primary"
+              disabled={false}
+              onClick={[Function]}
+              type="submit"
+            >
+              <span>
+                Save
+              </span>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+`;
+
+exports[`CreateView renders loaded state 1`] = `<div />`;
+
+exports[`CreateView renders loading state 1`] = `
+<div>
+  <div>
+    Loading...
+  </div>
+</div>
+`;
