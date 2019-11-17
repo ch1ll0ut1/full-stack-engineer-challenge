@@ -1,0 +1,38 @@
+version: '2'
+services:
+
+  db:
+    image: postgres:10-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: apidb
+
+  api:
+    build:
+      context: ./api/
+    depends_on: 
+      - db
+    command: /usr/app/node_modules/.bin/nodemon src/index.js
+    volumes:
+      - ./api/:/usr/app
+      - /usr/app/node_modules
+    ports:
+      - "8080:8080"
+    env_file: ./api/.env
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  dashboard:
+    build:
+      context: ./dashboard/
+    command: npm start
+    volumes:
+      - ./dashboard/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
