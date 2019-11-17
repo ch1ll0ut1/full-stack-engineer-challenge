@@ -1,13 +1,13 @@
 import { ScanResultStatus } from "./ScanResultStatus";
-import { ScanResultFindings } from "./ScanResultFindings";
+import { ScanResultFinding } from "./ScanResultFinding";
 
 export interface ScanResult {
   id: number;
   status: ScanResultStatus;
   repositoryName: string;
-  findings: ScanResultFindings;
+  findings: ScanResultFinding[];
   queuedAt: Date;
-  scanningAt: Date;
-  finishedAt: Date;
+  scanningAt?: Date;
+  finishedAt?: Date;
   updatedAt: Date;
 }
