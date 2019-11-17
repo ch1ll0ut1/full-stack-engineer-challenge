@@ -2,10 +2,10 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { Length, IsDate, IsNotEmpty, IsOptional } from 'class-validator';
 
 export enum ResultStatus {
-    QUEUED = "Queued",
-    IN_PROGRESS = "In Progress",
-    SUCCESS = "Success",
-    FAILURE = "Failure",
+    QUEUED = 'Queued',
+    IN_PROGRESS = 'In Progress',
+    SUCCESS = 'Success',
+    FAILURE = 'Failure',
 }
 
 @Entity()
@@ -45,19 +45,19 @@ export default Result;
 
 // SCHEMA
 const findingsExample = [{
-    "type": "sast",
-    "ruleId": "G402",
-    "location": {
-        "path": "connectors/apigateway.go",
-        "positions": {
-            "begin": {
-                "line": 60
-            }
-        }
+    type: 'sast',
+    ruleId: 'G402',
+    location: {
+        path: 'connectors/apigateway.go',
+        positions: {
+            begin: {
+                line: 60,
+            },
+        },
     },
-    "metadata": {
-        "description": "TLS InsecureSkipVerify set true.",
-        "severity": "HIGH"
+    metadata: {
+        description: 'TLS InsecureSkipVerify set true.',
+        severity: 'HIGH',
     }
 }];
 const exampleDate = new Date();

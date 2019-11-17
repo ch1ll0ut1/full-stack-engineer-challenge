@@ -20,7 +20,7 @@ const connectDb = () => {
     return createConnection({
         type: 'postgres',
         host: connectionOptions.host,
-        port: connectionOptions.port,
+        port: connectionOptions.port && parseInt(connectionOptions.port, 10),
         username: connectionOptions.user,
         password: connectionOptions.password,
         database: connectionOptions.database,
@@ -29,9 +29,9 @@ const connectDb = () => {
         entities: config.dbEntitiesPath,
         extra: {
             ssl: config.dbsslconn, // if not development, will use SSL
-        }
-    })
-}
+        },
+    });
+};
 
 connectDb()
     .then(async (connection) => {

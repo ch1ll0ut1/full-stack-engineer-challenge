@@ -1,7 +1,7 @@
-import { getManager, Like } from "typeorm";
-import { validate } from "class-validator";
+import { getManager, Like } from 'typeorm';
+import { validate } from 'class-validator';
 
-import { Result } from "../models/result";
+import { Result } from '../models/result';
 
 export default class TestScanResultService {
 
@@ -15,7 +15,7 @@ export default class TestScanResultService {
 
   public static async findOne(id?: number) {
     if (!id) {
-      return null;
+      return;
     }
 
     return this.getRepository().findOne(id);

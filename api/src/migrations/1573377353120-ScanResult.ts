@@ -5,48 +5,48 @@ const dbName = 'abidb';
 export class ScanResult1573377353120 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.createDatabase(dbName, true)
+        await queryRunner.createDatabase(dbName, true);
 
         await queryRunner.createTable(new Table({
-            name: "Result",
+            name: 'Result',
             columns: [
                 {
-                    name: "id",
-                    type: "int",
+                    name: 'id',
+                    type: 'int',
                     isPrimary: true
                 },
                 {
-                    name: "status",
-                    type: "text",
+                    name: 'status',
+                    type: 'text',
                 },
                 {
-                    name: "repositoryName",
-                    type: "varchar",
+                    name: 'repositoryName',
+                    type: 'varchar',
                 },
                 {
-                    name: "findings",
-                    type: "jsonb",
+                    name: 'findings',
+                    type: 'jsonb',
                 },
                 {
-                    name: "queuedAt",
-                    type: "timestamp",
+                    name: 'queuedAt',
+                    type: 'timestamp',
                 },
                 {
-                    name: "scanningAt",
-                    type: "timestamp",
+                    name: 'scanningAt',
+                    type: 'timestamp',
                     isNullable: true,
                 },
                 {
-                    name: "finishedAt",
-                    type: "timestamp",
+                    name: 'finishedAt',
+                    type: 'timestamp',
                     isNullable: true,
                 },
                 {
-                    name: "updatedAt",
-                    type: "timestamp",
+                    name: 'updatedAt',
+                    type: 'timestamp',
                 }
             ]
-        }), true)
+        }), true);
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
