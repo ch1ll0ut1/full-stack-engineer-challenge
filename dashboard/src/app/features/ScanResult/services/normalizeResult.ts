@@ -7,8 +7,8 @@ export const normalizeResult = (data: any): ScanResult => {
     repositoryName: data.repositoryName,
     findings: data.findings,
     queuedAt: new Date(data.queuedAt),
-    scanningAt: new Date(data.scanningAt),
-    finishedAt: new Date(data.finishedAt),
+    scanningAt: data.scanningAt && new Date(data.scanningAt),
+    finishedAt: data.finishedAt && new Date(data.finishedAt),
     updatedAt: new Date(data.updatedAt),
   };
 };
