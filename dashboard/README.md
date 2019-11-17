@@ -37,8 +37,9 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Notes
+## Notes 
 
 - improve performance for production by following "advanced guides": https://ant.design/docs/react/use-with-create-react-app
 - use css modules 
 - should add pagination to ListView
+- I missed that DetailView should also be a table, but as i already have an example of how i would do a table in the ListView i thought the current DetailView is more fun :)
