@@ -15,7 +15,7 @@ services:
       context: ./api/
     depends_on: 
       - db
-    command: /usr/app/node_modules/.bin/nodemon src/index.js
+    command: npm run watch-server
     volumes:
       - ./api/:/usr/app
       - /usr/app/node_modules
@@ -28,7 +28,7 @@ services:
   dashboard:
     build:
       context: ./dashboard/
-    command: npm start
+    command: yarn start
     volumes:
       - ./dashboard/:/usr/app
       - /usr/app/node_modules
